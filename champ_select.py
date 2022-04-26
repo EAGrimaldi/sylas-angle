@@ -2,6 +2,9 @@ from lcu_driver import Connector
 from score_calculator import Calculator
 from utils import wait_for_task
 
+# I know, global state is extremely gross
+# but I honestly could not be fucked to rewrite this as a class...
+
 connector = Connector()
 calc = Calculator()
 display_name = ''
