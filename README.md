@@ -10,6 +10,8 @@ Currently this tool uses [lcu-driver](https://github.com/sousa-andre/lcu-driver)
 
 `pip install lcu-driver`
 
+Currently this tool is only written for Windows, though minimal change would be needed to get this running on other OS.
+
 # TODO
 
 lcu-driver is built around decorators that are pretty annoying to use inside of a class. This encourages a really gross dependence on global state when coding quickly.
