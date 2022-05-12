@@ -1,3 +1,6 @@
+import argparse
+from distutils.util import strtobool
+
 from lcu_driver import Connector
 from score_calculator import Calculator
 from utils import wait_for_task
@@ -12,7 +15,7 @@ gameflow_phase = 'None'
 queue_desc = ''
 my_role = ''
 sylas_ban = False
-any_role = True
+any_role = False
 sylas_score = 0
 their_team = {}
 sylas_roles = {'middle', 'top', 'jungle'}
@@ -51,7 +54,7 @@ async def session_update(connection, event):
                 print('Sylas is banned...')
                 sylas_ban = True
         elif event.data['timer']['phase'] == 'FINALIZATION':
-            # after all picks locked check incremental calc vs batch calc
+            # after all picks are locked check incremental calc matches batch calc
             try:
                 batch_calc = calc.team_strength(their_team)
                 assert sylas_score == batch_calc, f'incremental calc {sylas_score} should equal batch calc {batch_calc}'
@@ -59,6 +62,7 @@ async def session_update(connection, event):
                 print(e)
         else:
             if not my_role:
+                # get what role we were assigned
                 for player in event.data['myTeam']:
                     if player['cellId'] == event.data['localPlayerCellId']:
                         my_role = player['assignedPosition']
@@ -101,5 +105,14 @@ async def session_update(connection, event):
     gameflow_phase = event.data
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--late", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+        help='enable this flag if starting the app while already in Champ Select')
+    parser.add_argument("--any-role", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
+        help='enable this flag if you want to to get results regardless of your role')
+    args = parser.parse_args()
+    if args.late: gameflow_phase = "ChampSelect"
+    if args.any_role: any_role = True
+
     wait_for_task('LeagueClientUx.exe')
     connector.start()
