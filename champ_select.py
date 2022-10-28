@@ -5,6 +5,7 @@ from lcu_driver import Connector
 from score_calculator import Calculator
 from utils import wait_for_task
 
+# Global state is pretty gross...
 # TODO rewrite as a class this with Willump
 
 connector = Connector()
