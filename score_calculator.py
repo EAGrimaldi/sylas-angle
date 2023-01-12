@@ -1,7 +1,7 @@
 from typing import Iterable, Union
 import urllib.request, json
 
-#  tier list of ultimates for Sylas to steal based on Rime's challenger guide
+#  tier list of ultimates for Sylas to steal based on Rime's challenger guide (last updated in July 2022)
 #  https://docs.google.com/spreadsheets/d/16lC9hutxugFT9eOFoVWKrKNpWuAhApshUSDgciphRWA/edit#gid=0
 
 class Calculator:
@@ -13,22 +13,29 @@ class Calculator:
             self.int_to_name[int(champion['key'])] = champion['name']
         self.tiers_champs = {
             'Z': {
-                'Amumu', 'Blitzcrank', "Cho'gath", 'Ezreal', 'Fiddle', 'Gangplank', 'Gnar', 'Hecarim', 'Malphite', 'Nasus', 'Rumble', 'Seraphine', 'Swain', 'Vex',
+                'Amumu', 'Blitzcrank', "Cho'gath", 'Ezreal', 'Fiddle', 'Gangplank', 'Gnar', 'Hecarim', 'Malphite', 'Nasus', 'Rumble', 'Seraphine', 'Swain', 'Vex', 
             },
             'S': {
-                'Akali', 'Alistar', 'Annie', 'Ashe', 'Bard', 'Ekko', 'Gwen', 'Irelia', 'Ivern', 'Kennen', 'Leona', 'Lucian', 'Miss Fortune', 'Mordekaiser', 'Morgana',
-                'Neeko', 'Nocturne', 'Nunu & Willump', 'Pyke', 'Renekton', 'Shen', 'Singed', 'Twisted Fate', "Vel'koz", 'Viktor', 'Volibear', 'Xin Zhao', 'Zeri', 'Ziggs',
+                'Akali', 'Alistar', 'Annie', 'Ashe', 'Bard', 'Ekko', 'Gwen', 'Irelia', 'Ivern', 'Jax', 'Kennen', 'Leona', 'Miss Fortune', 'Mordekaiser', 'Morgana', 
+                'Neeko', 'Nocturne', 'Nunu & Willump', 'Renekton', 'Shen', 'Singed', 'Twisted Fate', "Vel'koz", 'Viktor', 'Volibear', 'Xin Zhao', 'Zeri', 'Ziggs', 
             },
             'A': {
-                'Ahri', 'Diana', 'Evelynn', 'Galio', 'Karthus', 'Kayle', 'Kayn', 'Lee Sin', 'Lissandra', 'Lulu', 'Malzahar', 'Maokai', 'Nautilus', 'Ornn', 'Pantheon', 'Qiyana',
-                'Renata Glasc', 'Shyvana', 'Tristana', 'Varus', 'Veigar', 'Vladimir', 'Wukong', 'Yone', 'Yuumi', 'Zilean',
+                'Ahri', 'Diana', 'Evelynn', 'Galio', 'Karthus', 'Kayn', 'Kindred', 'Lee Sin', 'Lissandra', 'Lucian', 'Lulu', 'Malzahar', 'Maokai', 'Nautilus', 'Nilah', 
+                'Ornn', 'Pantheon', 'Qiyana', 'Renata Glasc', 'Shyvana', 'Udyr', 'Varus', 'Veigar', 'Vladimir', 'Yone', 'Yuumi', 'Zilean', 
+            },
+            'B': {
+                'Aatrox', 'Aphelios', 'Cassiopeia', 'Fizz', 'Garen', 'Gragas', 'Heimerdinger', 'Karma', 'Kayle', 'Kled', 'Lee Sin', 'Lillia', 'Lux', 'Orianna', 'Pyke', 
+                'Rammus', "Rek'Sai", 'Rell', 'Sejuani', 'Shaco', 'Sett', 'Sion', 'Skarner', 'Soraka', 'Tristana', 'Tryndamere', 'Wukong', 'Xerath', 'Yasuo', 'Zyra', 
             },
         }
+        # UNDER REVIEW:
+        # Jax rework
+        # Udyr rework
         self.champs_tiers = {}
         for tier, list in self.tiers_champs.items():
             for champ in list:
                 self.champs_tiers[champ] = tier
-        self.tiers_scores = {'Z': 6, 'S': 4, 'A': 3,}
+        self.tiers_scores = {'Z': 6, 'S': 4, 'A': 3, 'B': 1}
     def champ_strength(self, champ: Union[int, str]) -> int:
         if isinstance(champ, int):
             champ = self.int_to_name(champ)
