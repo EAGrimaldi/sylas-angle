@@ -9,23 +9,23 @@ class Calculator:
         with urllib.request.urlopen("https://ddragon.leagueoflegends.com/cdn/12.7.1/data/en_US/champion.json") as url:
             champion_json = json.loads(url.read().decode())
         self.int_to_name = {}
-        for champion in champion_json['data'].values():
-            self.int_to_name[int(champion['key'])] = champion['name']
+        for champion in champion_json["data"].values():
+            self.int_to_name[int(champion["key"])] = champion["name"]
         self.tiers_champs = {
-            'Z': {
-                'Amumu', 'Blitzcrank', "Cho'gath", 'Ezreal', 'Fiddle', 'Gangplank', 'Gnar', 'Hecarim', 'Malphite', 'Nasus', 'Rumble', 'Seraphine', 'Swain', 'Vex', 
+            "Z": {
+                "Amumu", "Blitzcrank", "Cho'Gath", "Ezreal", "Fiddle", "Gangplank", "Gnar", "Hecarim", "Malphite", "Nasus", "Rumble", "Seraphine", "Swain", "Vex", 
             },
-            'S': {
-                'Akali', 'Alistar', 'Annie', 'Ashe', 'Bard', 'Ekko', 'Gwen', 'Irelia', 'Ivern', 'Jax', 'Kennen', 'Leona', 'Miss Fortune', 'Mordekaiser', 'Morgana', 
-                'Neeko', 'Nocturne', 'Nunu & Willump', 'Renekton', 'Shen', 'Singed', 'Twisted Fate', "Vel'koz", 'Viktor', 'Volibear', 'Xin Zhao', 'Zeri', 'Ziggs', 
+            "S": {
+                "Akali", "Alistar", "Annie", "Ashe", "Bard", "Ekko", "Gwen", "Irelia", "Ivern", "Jax", "Kennen", "Leona", "Miss Fortune", "Mordekaiser", "Morgana", 
+                "Neeko", "Nocturne", "Nunu & Willump", "Renekton", "Shen", "Singed", "Twisted Fate", "Vel'Koz", "Viktor", "Volibear", "Xin Zhao", "Zeri", "Ziggs", 
             },
-            'A': {
-                'Ahri', 'Diana', 'Evelynn', 'Galio', 'Karthus', 'Kayn', 'Kindred', 'Lee Sin', 'Lissandra', 'Lucian', 'Lulu', 'Malzahar', 'Maokai', 'Nautilus', 'Nilah', 
-                'Ornn', 'Pantheon', 'Qiyana', 'Renata Glasc', 'Shyvana', 'Udyr', 'Varus', 'Veigar', 'Vladimir', 'Yone', 'Yuumi', 'Zilean', 
+            "A": {
+                "Ahri", "Diana", "Evelynn", "Galio", "Karthus", "Kayn", "Kindred", "Lissandra", "Lucian", "Lulu", "Malzahar", "Maokai", "Nautilus", "Nilah", 
+                "Ornn", "Pantheon", "Qiyana", "Renata Glasc", "Shyvana", "Udyr", "Varus", "Veigar", "Vladimir", "Yone", "Yuumi", "Zilean", 
             },
-            'B': {
-                'Aatrox', 'Aphelios', 'Cassiopeia', 'Fizz', 'Garen', 'Gragas', 'Heimerdinger', 'Karma', 'Kayle', 'Kled', 'Lee Sin', 'Lillia', 'Lux', 'Orianna', 'Pyke', 
-                'Rammus', "Rek'Sai", 'Rell', 'Sejuani', 'Shaco', 'Sett', 'Sion', 'Skarner', 'Soraka', 'Tristana', 'Tryndamere', 'Wukong', 'Xerath', 'Yasuo', 'Zyra', 
+            "B": {
+                "Aatrox", "Aphelios", "Cassiopeia", "Fizz", "Garen", "Gragas", "Heimerdinger", "Karma", "Kayle", "Kled", "Lee Sin", "Lillia", "Lux", "Orianna", "Pyke", 
+                "Rammus", "Rek'Sai", "Rell", "Sejuani", "Shaco", "Sett", "Sion", "Skarner", "Soraka", "Tristana", "Tryndamere", "Wukong", "Xerath", "Yasuo", "Zyra", 
             },
         }
         # UNDER REVIEW:
@@ -35,7 +35,7 @@ class Calculator:
         for tier, list in self.tiers_champs.items():
             for champ in list:
                 self.champs_tiers[champ] = tier
-        self.tiers_scores = {'Z': 6, 'S': 4, 'A': 3, 'B': 1}
+        self.tiers_scores = {"Z": 6, "S": 4, "A": 3, "B": 1}
     def champ_strength(self, champ: Union[int, str]) -> int:
         if isinstance(champ, int):
             champ = self.int_to_name(champ)
