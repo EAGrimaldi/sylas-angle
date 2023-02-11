@@ -1,8 +1,11 @@
 from typing import Iterable, Union
 import urllib.request, json
 
-#  tier list of ultimates for Sylas to steal based on Rime's challenger guide (last updated in July 2022)
+#  tier list of ultimates for Sylas to steal
+#  partially based on Rime's (NA challenger) tier list (last updated August 2022)
 #  https://docs.google.com/spreadsheets/d/16lC9hutxugFT9eOFoVWKrKNpWuAhApshUSDgciphRWA/edit#gid=0
+#  partially based on BZ's (EUW challenger) tier list (last updated February 2023)
+#  https://twitter.com/BZ_EUW/status/1621602893735280640
 
 class Calculator:
     def __init__(self) -> None:
@@ -13,22 +16,25 @@ class Calculator:
             self.int_to_name[int(champion["key"])] = champion["name"]
         self.tiers_champs = {
             "Z": {
-                "Amumu", "Blitzcrank", "Cho'Gath", "Ezreal", "Fiddle", "Gangplank", "Gnar", "Hecarim", "Malphite", "Nasus", "Rumble", "Seraphine", "Swain", "Vex", 
+                "Alistar", "Amumu", "Ashe", "Blitzcrank", "Fiddle", "Gangplank", "Gnar", "Hecarim", "Jax", "Malphite", "Nasus", "Rumble", "Singed", "Swain", 
+                "Udyr", "Varus", "Vex", "Zeri", 
             },
             "S": {
-                "Akali", "Alistar", "Annie", "Ashe", "Bard", "Ekko", "Gwen", "Irelia", "Ivern", "Jax", "Kennen", "Leona", "Miss Fortune", "Mordekaiser", "Morgana", 
-                "Neeko", "Nocturne", "Nunu & Willump", "Renekton", "Shen", "Singed", "Twisted Fate", "Vel'Koz", "Viktor", "Volibear", "Xin Zhao", "Zeri", "Ziggs", 
+                "Akali", "Annie", "Azir", "Cho'Gath", "Ekko", "Ezreal", "Garen", "Irelia", "Ivern", "Kayle", "Kennen", "Leona", "Lissandra", "Lucian", "Mordekaiser", 
+                "Morgana", "Nautilus", "Neeko", "Pantheon", "Sejuani", "Seraphine", "Shen", "Twisted Fate", "Veigar", "Viktor", "Volibear", "Xin Zhao", "Ziggs", 
             },
             "A": {
-                "Ahri", "Diana", "Evelynn", "Galio", "Karthus", "Kayn", "Kindred", "Lissandra", "Lucian", "Lulu", "Malzahar", "Maokai", "Nautilus", "Nilah", 
-                "Ornn", "Pantheon", "Qiyana", "Renata Glasc", "Shyvana", "Udyr", "Varus", "Veigar", "Vladimir", "Yone", "Yuumi", "Zilean", 
+                "Aatrox", "Ahri", "Aurelion Sol", "Cassiopeia", "Corki", "Diana", "Evelynn", "Galio", "Gragas", "Gwen", "Heimerdinger", "Karma", "Karthus", "Kayn", 
+                "Lulu", "Malzahar", "Maokai", "Miss Fortune", "Nunu & Willump", "Nocturne", "Ornn", "Qiyana", "Rammus", "Rell", "Renata Glasc", "Renekton", "Shaco", 
+                "Shyvana", "Sona", "Tahm Kench", "Teemo", "Tristana", "Urgot", "Vel'Koz", "Vladimir", "Xerath", "Yone", "Yuumi", "Zed", "Zilean", 
             },
             "B": {
-                "Aatrox", "Aphelios", "Cassiopeia", "Fizz", "Garen", "Gragas", "Heimerdinger", "Karma", "Kayle", "Kled", "Lee Sin", "Lillia", "Lux", "Orianna", "Pyke", 
-                "Rammus", "Rek'Sai", "Rell", "Sejuani", "Shaco", "Sett", "Sion", "Skarner", "Soraka", "Tristana", "Tryndamere", "Wukong", "Xerath", "Yasuo", "Zyra", 
+                "Bard", "Braum", "Fizz", "Jarvan IV", "Katarina", "Kindred", "Kled", "Lee Sin", "Lillia", "Lux", "Nilah", "Olaf", "Orianna", "Pyke", "Rakan", "Rek'Sai", 
+                "Riven", "Ryze", "Sett", "Sion", "Skarner", "Soraka", "Taliyah", "Talon", "Taric", "Tryndamere", "Vi", "Warwick", "Wukong", "Yasuo", "Zyra", 
             },
         }
         # UNDER REVIEW:
+        # Aurelion Sol rework
         # Jax rework
         # Udyr rework
         self.champs_tiers = {}
